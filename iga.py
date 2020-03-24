@@ -4,6 +4,8 @@ import scrapy
 import urllib
 from urllib.parse import quote
 
+os.makedirs('data', exist_ok=True)
+
 class BfIgaSpider(scrapy.Spider):
     name = "bf"
     start_urls = [
