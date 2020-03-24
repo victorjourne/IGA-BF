@@ -1,6 +1,9 @@
 ifndef $(base_url)
 	base_url="https://www.interieur.gouv.fr/Publications/Rapports-de-l-IGA/Bonnes-Feuilles"
 endif
+ifndef $(base_path)
+	base_path=data
+endif
 
 venv:
 	python3 -m venv venv
@@ -8,10 +11,11 @@ venv:
 
 crawl:
 	rm -f  iga.json
-	venv/bin/scrapy runspider iga.py  -o iga.json -s FEED_EXPORT_ENCODING='utf-8'
+	venv/bin/scrapy runspider iga.py -o iga.json -s FEED_EXPORT_ENCODING='utf-8'
+	cp -r tmp $(base_path)
 
 json2df:
-	venv/bin/python3 json2df.py iga.json
+	venv/bin/python3 json2df.py iga.json $(base_path)
 
 shell:
 	venv/bin/scrapy shell $(base_url)

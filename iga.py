@@ -4,7 +4,8 @@ import scrapy
 import urllib
 from urllib.parse import quote
 
-os.makedirs('data', exist_ok=True)
+output_path = 'tmp'
+os.makedirs(output_path, exist_ok=True)
 
 class BfIgaSpider(scrapy.Spider):
     name = "bf"
@@ -39,7 +40,7 @@ class BfIgaSpider(scrapy.Spider):
         # We choose the file with les bonnes feuilles or BF
         file_to_save = [f for f in file if ('BF' in f) or ('bonnes-feuilles' in f)]
         if len(file_to_save) == 1 :
-            local_path = os.path.join('data',os.path.basename(file_to_save[0]))
+            local_path = os.path.join(output_path,os.path.basename(file_to_save[0]))
             file_to_download = response.urljoin(quote(file_to_save[0]))#.encode('utf-8')
             if not os.path.isfile(local_path):
 
