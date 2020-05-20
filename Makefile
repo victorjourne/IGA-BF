@@ -11,11 +11,18 @@ venv:
 
 crawl:
 	rm -f  iga.json
+	rm -f $(base_path) -r
+	mkdir -p $(base_path)/pdf
 	venv/bin/scrapy runspider iga.py -o iga.json -s FEED_EXPORT_ENCODING='utf-8'
-	cp -r tmp $(base_path)
+	cp -r tmp/* $(base_path)/pdf/
 
 json2df:
 	venv/bin/python3 json2df.py iga.json $(base_path)
+
+json2meta:
+		rm -f $(base_path)/meta -r
+		mkdir -p $(base_path)/meta
+		venv/bin/python3 json2meta.py iga.json $(base_path)
 
 shell:
 	venv/bin/scrapy shell $(base_url)
