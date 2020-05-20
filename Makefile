@@ -27,4 +27,4 @@ json2meta:
 shell:
 	venv/bin/scrapy shell $(base_url)
 
-run:venv crawl json2df
+run:venv crawl json2df json2meta
