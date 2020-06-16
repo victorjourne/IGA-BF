@@ -18,5 +18,10 @@ for _, row in df.iterrows():
     path_meta = path_meta.with_suffix('').with_suffix('.json') # replace extension
     row['date'] =  datetime.datetime.strptime(row['date'], DATE_FORMAT).date()
     row['date'] = str(row['date'])
+
+    row['author'] = row['author'].replace('Auteur : ','')
+    row['author'] = re.split(' - | et ', row['author'])
+    #import pdb; pdb.set_trace()
+
     with open(path_meta , 'w', encoding='utf-8') as f:
         json.dump(row.to_dict(), f, ensure_ascii=False)

@@ -16,7 +16,7 @@ df = pd.read_json(json_path)
 xlsx_path = json_path.replace('.json','.xlsx')
 print('Write %s xlsx output'% xlsx_path)
 df['author'] = df['author'].str.replace('Auteur : ','')
-#import pdb; pdb.set_trace()
+
 df['date'] = df['date'].apply(lambda x: datetime.datetime.strptime(x, DATE_FORMAT).date())
 
 df.to_excel(os.path.join(output_path,xlsx_path), index=False)
