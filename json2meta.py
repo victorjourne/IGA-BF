@@ -21,6 +21,10 @@ for _, row in df.iterrows():
 
     row['author'] = row['author'].replace('Auteur : ','')
     row['author'] = re.split(' - | et ', row['author'])
+    if row['author'] != [''] :
+        row['author'] = {'name': val for val in row['author']}
+    else:
+        row['author'] = []
     #import pdb; pdb.set_trace()
 
     with open(path_meta , 'w', encoding='utf-8') as f:
