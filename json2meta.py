@@ -23,10 +23,11 @@ for _, row in df.iterrows():
 
     row['author'] = re.split(' - |- | -| et ', row['author'])
     if row['author'] != [''] :
-        row['author'] = [{'name': val} for val in row['author']]
+        #row['author'] = [{'name': val} for val in row['author']]
+        pass
     else:
         row['author'] = []
     #import pdb; pdb.set_trace()
-
+    row['author'] = ', '.join(row['author'])
     with open(path_meta , 'w', encoding='utf-8') as f:
         json.dump(row.to_dict(), f, ensure_ascii=False)
