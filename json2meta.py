@@ -20,9 +20,10 @@ for _, row in df.iterrows():
     row['date'] = str(row['date'])
 
     row['author'] = row['author'].replace('Auteur : ','')
-    row['author'] = re.split(' - | et ', row['author'])
+
+    row['author'] = re.split(' - |- | -| et ', row['author'])
     if row['author'] != [''] :
-        row['author'] = {'name': val for val in row['author']}
+        row['author'] = [{'name': val} for val in row['author']]
     else:
         row['author'] = []
     #import pdb; pdb.set_trace()
