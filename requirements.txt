@@ -1,4 +1,4 @@
-scrapy==2.0.1
+scrapy==2.6.1
 pandas
 openpyxl
 parsedatetime
