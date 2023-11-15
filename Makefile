@@ -15,6 +15,7 @@ crawl:
 	mkdir -p $(base_path)/pdf
 	venv/bin/scrapy runspider iga.py -o iga.json -s FEED_EXPORT_ENCODING='utf-8'
 	cp -r tmp/* $(base_path)/pdf/
+	rm tmp -R
 
 json2df:
 	venv/bin/python3 json2df.py iga.json $(base_path)
